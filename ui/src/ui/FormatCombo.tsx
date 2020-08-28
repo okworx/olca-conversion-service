@@ -34,6 +34,7 @@ export class FormatCombo extends React.Component<Props, {}> {
                 model.Format.ECOSPOLD_2,
                 model.Format.ILCD,
                 model.Format.JSON_LD,
+                model.Format.XLS,
             ];
         }
         const options = [];

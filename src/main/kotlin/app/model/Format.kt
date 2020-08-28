@@ -5,7 +5,8 @@ enum class Format(val label: String) {
     ECOSPOLD_2("EcoSpold 2"),
     ILCD("ILCD"),
     JSON_LD("JSON LD"),
-    SIMAPRO_CSV("SimaPro CSV");
+    SIMAPRO_CSV("SimaPro CSV"),
+    XLS("Excel");
 
     companion object {
         fun get(label: String): Format? {

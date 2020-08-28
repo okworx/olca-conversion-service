@@ -4,6 +4,7 @@ export enum Format {
     ILCD = "ILCD",
     JSON_LD = "JSON LD",
     SIMAPRO_CSV = "SimaPro CSV",
+    XLS = "Excel",
 }
 
 export const FORMATS = [
@@ -12,6 +13,7 @@ export const FORMATS = [
     Format.ILCD,
     Format.JSON_LD,
     Format.SIMAPRO_CSV,
+    Format.XLS,
 ];
 
 export interface Setup {
