@@ -8,12 +8,14 @@ import app.model.ExportEcoSpold1
 import app.model.ExportEcoSpold2
 import app.model.ExportILCD
 import app.model.ExportJSON
+import app.model.ExportXLS
 import app.model.Format
 import app.model.Import
 import app.model.ImportEcoSpold1
 import app.model.ImportEcoSpold2
 import app.model.ImportILCD
 import app.model.ImportJSON
+import app.model.ImportXLS
 import app.model.ImportSimaProCsv
 import com.google.gson.Gson
 import org.openlca.core.database.IDatabase
@@ -81,6 +83,7 @@ class Converter {
             Format.ECOSPOLD_1 -> ImportEcoSpold1()
             Format.ECOSPOLD_2 -> ImportEcoSpold2()
             Format.JSON_LD -> ImportJSON()
+            Format.XLS -> ImportXLS()
             Format.SIMAPRO_CSV -> ImportSimaProCsv()
             else -> null
         }
@@ -93,6 +96,7 @@ class Converter {
             Format.ILCD -> ExportILCD()
             Format.ECOSPOLD_1 -> ExportEcoSpold1()
             Format.ECOSPOLD_2 -> ExportEcoSpold2()
+            Format.XLS -> ExportXLS()
             else -> null
         }
     }
