@@ -2,6 +2,7 @@
 # package (http://docs.python-requests.org/en/master/)
 
 import requests
+import base64
 
 API_ENDPOINT = "http://localhost/api/"
 
@@ -20,6 +21,9 @@ def main():
         exit(1)
     data = r.json()
     # data = {"zipFile": "...", "process": "...", "format": "..."}
+
+    # download with a single request (PING-PONG)
+    # open(data["zipFile"] + ".xlsx", 'wb').write(base64.b64decode(data["process"]))
 
     # download the converted data set
     r = requests.get(API_ENDPOINT + "result/" + data["zipFile"], stream=True)
