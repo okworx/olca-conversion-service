@@ -10,6 +10,7 @@ import java.util.UUID
 import java.util.zip.ZipEntry
 import java.util.zip.ZipFile
 import java.util.zip.ZipOutputStream
+import java.util.Base64
 
 class Cache(private val dir: File) {
 
@@ -69,8 +70,7 @@ class Cache(private val dir: File) {
             ZipFile(zipFile).use { zip ->
                 val e = findEntry(id, zip) ?: return ""
                 zip.getInputStream(e).buffered().use { stream ->
-                    return String(stream.readBytes(),
-                            Charset.forName("utf-8"))
+                    return String(Base64.getEncoder().encode(stream.readBytes()))
                 }
             }
         } catch (e: Exception) {
