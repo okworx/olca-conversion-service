@@ -1,8 +1,6 @@
 FROM shipilev/openjdk-shenandoah:8
 
-COPY ./target/server.jar /app/
-COPY ./deploy/docker/start.sh /app/
-COPY ./deploy/docker/config.json.template /app/
+COPY ./target/server.jar ./deploy/UBA_LCIAmethods.zip ./deploy/docker/start.sh ./deploy/docker/config.json.template /app/
 COPY ./ui/ /app/ui/
 
 RUN apt-get update && apt-get install -y gettext-base curl
