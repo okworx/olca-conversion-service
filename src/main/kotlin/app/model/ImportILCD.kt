@@ -8,8 +8,6 @@ import app.Server
 import org.slf4j.LoggerFactory
 import java.net.URL
 import java.io.File
-import org.openlca.core.database.ImpactCategoryDao
-import org.openlca.core.model.ImpactCategory
 import de.uba.probas2.util.RestPathUtil
 import org.openlca.core.database.ProcessDao
 
@@ -32,10 +30,10 @@ class ImportILCD : Import {
         lciamimp.run()
 
 		// the original URL looks like https://acme.org/resource/processes/f00b951c-e67f-4f7f-8dd4-665de3974e18?version=00.00.000
-		val rpu = RestPathUtil(url);
-  		val baseurl = rpu.getBaseUrl()
-		val uuid = rpu.getUuid()
-		val versionParam = rpu.getVersionParam()
+		val rpu = RestPathUtil(url)
+  		val baseurl = rpu.baseUrl
+		val uuid = rpu.uuid
+		val versionParam = rpu.versionParam
 		
 		val zipurl = baseurl.plus("/processes/").plus(uuid).plus("/zipexport?").plus(versionParam)
 		
@@ -66,5 +64,4 @@ class ImportILCD : Import {
         log.debug("data imported; delete file {}", tempFile)
         tempFile.delete()
     }
-
 }
