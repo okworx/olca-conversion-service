@@ -11,6 +11,7 @@ import java.io.File
 import org.openlca.core.database.ImpactCategoryDao
 import org.openlca.core.model.ImpactCategory
 import de.uba.probas2.util.RestPathUtil
+import org.openlca.core.database.ProcessDao
 
 class ImportILCD : Import {
 
@@ -22,6 +23,7 @@ class ImportILCD : Import {
             throw Exception("Invalid URL: $url")
        
 		// first import the UBA LCIA methods
+		// apparently we can only get them in by means of a dummy process
         val lciamstore = ZipStore(File("UBA_LCIAmethods.zip"))
 		
         val lciamconf = ImportConfig(lciamstore, db)
@@ -55,6 +57,11 @@ class ImportILCD : Import {
         conf.flowMap = setup.flowMap()
         val imp = ILCDImport(conf)
         imp.run()
+		
+		// remove the dummy process so it won't get exported
+		val pDao = ProcessDao(db)
+		val dummy = pDao.getForRefId("00420000-c838-4b88-81cb-981aee9e8e2b")
+		pDao.delete(dummy)
 
         log.debug("data imported; delete file {}", tempFile)
         tempFile.delete()
